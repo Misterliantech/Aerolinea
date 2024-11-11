@@ -1,9 +1,12 @@
+package Logica;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.aerolineajava;
 
+
+import Database.ConexionDB;
 import java.sql.Connection;
 import java.sql.SQLException;
 

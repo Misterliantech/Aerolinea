@@ -1,4 +1,6 @@
-package com.mycompany.aerolineajava;
+package Database;
+
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
