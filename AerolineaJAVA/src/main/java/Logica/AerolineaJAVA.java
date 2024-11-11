@@ -1,11 +1,5 @@
 package Logica;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
-
-
 import Database.ConexionDB;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,7 +14,7 @@ public class AerolineaJAVA {
         
         ConexionDB conexion = new ConexionDB();
     
-        Connection conn = conexion.conectar();
+        Connection conn = Database.ConexionDB.conectar();
         
         if (conn != null){
             
