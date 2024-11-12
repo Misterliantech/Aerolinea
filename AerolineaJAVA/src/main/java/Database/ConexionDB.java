@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class ConexionDB {
 
-    public static Connection conectar(){
+    public Connection conectar(){
         
         // URL de conexión con las propiedades 'encrypt=true' y 'trustServerCertificate=true'
         String url = "jdbc:sqlserver://localhost:1433;databaseName=Aerolinea;encrypt=true;trustServerCertificate=true;";
