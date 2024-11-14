@@ -11,6 +11,6 @@ package app.skyvoyage;
 public class SkyVoyage {
 
     public static void main(String[] args) {
-        PaginaPrincipal.main(args);
+        login.main(args);
     }
 }
