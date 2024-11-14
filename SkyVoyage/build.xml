@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SkyVoyage" default="run" basedir=".">
+    <description>Builds, tests, and runs the project SkyVoyage.</description>
+    <import file="nbproject/build-impl.xml"/>
+
+    <!-- Definir la ruta al directorio 'lib' donde se encuentran los JARs -->
+    <path id="classpath">
+        <fileset dir="lib">
+            <include name="mssql-jdbc-12.8.1.jre11"/> <!-- Cambia esto al nombre correcto del archivo JAR -->
+        </fileset>
+        <!-- Puedes agregar aquí más JARs si es necesario -->
+    </path>
+
+    <!-- Tarea para compilar el código -->
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes" classpathref="classpath" />
+    </target>
+
+    <!-- Tarea para ejecutar el programa -->
+    <target name="run" depends="compile">
+        <java classname="ConexionBD" classpathref="classpath" fork="true">
+            <jvmarg value="-Dfile.encoding=UTF-8" />
+        </java>
+    </target>
+
+    <!-- Tarea para limpiar los productos de la compilación -->
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+</project>
