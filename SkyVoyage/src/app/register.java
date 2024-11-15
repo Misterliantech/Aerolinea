@@ -1,18 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package app;
 
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
@@ -115,6 +109,7 @@ public class register extends javax.swing.JFrame {
         comboBoxNacionalidades = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -301,22 +296,7 @@ public class register extends javax.swing.JFrame {
         comboBoxNacionalidades.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(comboBoxNacionalidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -340,6 +320,12 @@ public class register extends javax.swing.JFrame {
         if (validarCampos()){
             
             guardarUsuario();
+            nombretext.setText("");
+            cedulatext.setText("");
+            nombreusuariotext.setText("");
+            contraseña1.setText("");
+            contraseña2.setText("");
+            emailtext.setText("");
         }
     }//GEN-LAST:event_guardarActionPerformed
 
@@ -412,26 +398,26 @@ public class register extends javax.swing.JFrame {
     }
     
     private boolean existeUsuario(String nombreUsuario, String correo, String cedula) {
-    try (Connection conn = ConexionBD.getConexion()) {
-        // Consulta para verificar si el nombre de usuario ya existe
-        String query = "SELECT COUNT(*) FROM usuarios WHERE nombre_usuario = ? OR correo = ? OR cedula = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, nombreUsuario);
-            stmt.setString(2, correo);
-            stmt.setString(3, cedula);
+        try (Connection conn = ConexionBD.getConexion()) {
+            // Consulta para verificar si el nombre de usuario ya existe
+            String query = "SELECT COUNT(*) FROM usuarios WHERE nombre_usuario = ? OR correo = ? OR cedula = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, nombreUsuario);
+                stmt.setString(2, correo);
+                stmt.setString(3, cedula);
 
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next() && rs.getInt(1) > 0) {
-                JOptionPane.showMessageDialog(this, "El nombre de usuario, correo o cédula ya está registrado.", "Error", JOptionPane.ERROR_MESSAGE);
-                return true;  // Si algún campo ya existe, retornar true
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next() && rs.getInt(1) > 0) {
+                    JOptionPane.showMessageDialog(this, "El nombre de usuario, correo o cédula ya está registrado.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return true;  // Si algún campo ya existe, retornar true
+                }
             }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al verificar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error al verificar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
 
-    return false; // Si no se encontró nada, retornar false
-}
+        return false; // Si no se encontró nada, retornar false
+    }
     /**
      * @param args the command line arguments
      */
