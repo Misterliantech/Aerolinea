@@ -205,7 +205,7 @@ public class login extends javax.swing.JFrame {
 
                 // Si las credenciales son correctas, muestra un mensaje de éxito
                 if (esValido) {
-                    PaginaPrincipal n = new PaginaPrincipal();
+                    PaginaPrincipal n = new PaginaPrincipal(usuario);
                     n.setVisible(true);
                     this.dispose();
                 } else {
