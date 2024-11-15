@@ -22,6 +22,14 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         this.setTitle("Pagina Principal");
         setLocationRelativeTo(null);
         sesion.setText(Usuario);
+        Compras a = new Compras();
+        a.setSize(860, 670);
+        a.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(a, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
     }
 
     /**
