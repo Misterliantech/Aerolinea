@@ -23,6 +23,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         sesion.setText(Usuario);
         Compras a = new Compras();
+        a.requestFocusInWindow();
         a.setSize(860, 670);
         a.setLocation(0, 0);
         
@@ -56,7 +57,6 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1024, 768));
         setSize(new java.awt.Dimension(1024, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -92,6 +92,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 comprasMouseExited(evt);
             }
         });
+        compras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comprasActionPerformed(evt);
+            }
+        });
 
         modificar.setBackground(new java.awt.Color(255, 255, 204));
         modificar.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
@@ -115,6 +120,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 modificarMouseExited(evt);
             }
         });
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
 
         vuelos.setBackground(new java.awt.Color(255, 255, 204));
         vuelos.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
@@ -136,6 +146,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 vuelosMouseExited(evt);
+            }
+        });
+        vuelos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vuelosActionPerformed(evt);
             }
         });
 
@@ -300,6 +315,39 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private void comprasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comprasMouseEntered
         compras.setBackground(new Color (54,154,185));
     }//GEN-LAST:event_comprasMouseEntered
+
+    private void comprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprasActionPerformed
+        Vuelos a = new Vuelos();
+        a.setSize(860, 670);
+        a.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(a, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();        // TODO add your handling code here:
+    }//GEN-LAST:event_comprasActionPerformed
+
+    private void vuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vuelosActionPerformed
+        Compras a = new Compras();
+        a.setSize(860, 670);
+        a.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(a, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();          // TODO add your handling code here:
+    }//GEN-LAST:event_vuelosActionPerformed
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+        Modificaciones a = new Modificaciones();
+        a.setSize(860, 670);
+        a.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(a, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();         // TODO add your handling code here:
+    }//GEN-LAST:event_modificarActionPerformed
 
     private void ShowPanel (JPanel p){
         
