@@ -28,10 +28,7 @@ public class BuscarVuelo extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        content = new javax.swing.JPanel();
         entrar = new javax.swing.JButton();
         entrar2 = new javax.swing.JButton();
 
@@ -43,35 +40,23 @@ public class BuscarVuelo extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("BUSCAR VUELO");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(1024, 768));
-        jPanel1.setPreferredSize(new java.awt.Dimension(800, 670));
+        content.setMaximumSize(new java.awt.Dimension(1024, 768));
+        content.setPreferredSize(new java.awt.Dimension(800, 670));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 670, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 800, 670));
-
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 200, 30));
-
-        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 200, 30));
+        jPanel2.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 800, 670));
 
         entrar.setBackground(new java.awt.Color(255, 255, 204));
         entrar.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
@@ -87,7 +72,7 @@ public class BuscarVuelo extends javax.swing.JFrame {
                 entrarKeyPressed(evt);
             }
         });
-        jPanel2.add(entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 670, -1, 60));
+        jPanel2.add(entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 580, -1, 60));
 
         entrar2.setBackground(new java.awt.Color(255, 255, 204));
         entrar2.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
@@ -103,7 +88,7 @@ public class BuscarVuelo extends javax.swing.JFrame {
                 entrar2KeyPressed(evt);
             }
         });
-        jPanel2.add(entrar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 560, -1, 60));
+        jPanel2.add(entrar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 460, -1, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,13 +156,10 @@ public class BuscarVuelo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel content;
     private javax.swing.JButton entrar;
     private javax.swing.JButton entrar2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
