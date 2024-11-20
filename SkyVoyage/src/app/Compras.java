@@ -269,12 +269,9 @@ public class Compras extends javax.swing.JPanel {
     private void reservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservarActionPerformed
         
         if (validarCampos()){
-            
-            MostrarDisponibles n = new MostrarDisponibles();
-            DatosRegistro m = new DatosRegistro();
             String origen = (String) ciudadorigen.getSelectedItem();
             String destino = (String) ciudaddestino.getSelectedItem();
-            m.Tomar(origen, destino);
+            MostrarDisponibles n = new MostrarDisponibles(origen, destino);
             n.setVisible(true);
         }
     }//GEN-LAST:event_reservarActionPerformed

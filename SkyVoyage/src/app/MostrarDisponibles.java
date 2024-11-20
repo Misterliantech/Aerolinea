@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package app;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import javax.swing.JProgressBar;
@@ -11,7 +8,10 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import java.sql.*;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -19,29 +19,25 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MostrarDisponibles extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MostrarDisponibles
-     */
-    public MostrarDisponibles() {
+    private String ciudadOrigen;
+    private String ciudadDestino;
+    
+    public MostrarDisponibles(String origen, String destino) {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }
-    
-    public void cargar (String origen, String destino){
-        
-        DatosRegistro n = new DatosRegistro();
-        
-        cargarDatosVuelos(n.origen(), n.destino());
+        this.ciudadOrigen = origen;
+        this.ciudadDestino = destino;
+        cargarDatosVuelos(ciudadOrigen, ciudadDestino);
     }
 
-    private void cargarDatosVuelos(String ciudadOrigen, String ciudadDestino) {
-    // Establecer el modelo de la tabla
-    DefaultTableModel model = new DefaultTableModel();
-    model.addColumn("Código de Vuelo");
-    model.addColumn("Origen");
-    model.addColumn("Destino");
-    model.addColumn("Total Asientos");
-    model.addColumn("Ocupación");
+    private void cargarDatosVuelos(String ciudadOrigen, String ciudadDestino) {        
+    
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Código de Vuelo");
+        model.addColumn("Origen");
+        model.addColumn("Destino");
+        model.addColumn("Total Asientos");
+        model.addColumn("Ocupación");
 
     // Conectar a la base de datos
         try (Connection conn = ConexionBD.getConexion()) {
@@ -49,7 +45,7 @@ public class MostrarDisponibles extends javax.swing.JFrame {
             String sql = "SELECT codigo_vuelo, origen, destino, total_asientos, asientos_ocupados, "
                        + "(CAST(asientos_ocupados AS FLOAT) / total_asientos) * 100 AS porcentaje_ocupacion "
                        + "FROM vuelos "
-                       + "WHERE origen = ? AND destino = ?";  // Filtros por origen y destino
+                       + "WHERE origen = ? AND destino = ?";  
 
             // Preparar la consulta con parámetros
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -89,11 +85,16 @@ public class MostrarDisponibles extends javax.swing.JFrame {
 
                 // Establecer el modelo de la tabla para mostrar los datos
                 jTable1.setModel(model);
+                
+                
 
                 // Configurar la renderización de las barras de progreso en la tabla
                 jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableCellRenderer() {
                     @Override
                     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                        
+                        setForeground(Color.GREEN);
+                        
                         if (value instanceof JProgressBar) {
                             return (JProgressBar) value;
                         }
@@ -113,32 +114,63 @@ public class MostrarDisponibles extends javax.swing.JFrame {
 
             es.printStackTrace();
         }
-}
+    }
+    
+    private void seleccionarVuelo(){
+        
+        int row = jTable1.getSelectedRow();
+        
+        if (row != -1) {  // Verifica si se seleccionó una fila
+        // Obtener el código de vuelo (asumiendo que es la primera columna)
+        String codigoVuelo = jTable1.getValueAt(row, 0).toString();
+        // Obtener el total de asientos (suponiendo que es la columna 3)
+        int totalAsientos = Integer.parseInt(jTable1.getValueAt(row, 3).toString());
+        
+        // Mostrar el código de vuelo seleccionado (para verificar)
+        System.out.println("Código de vuelo seleccionado: " + codigoVuelo);
+        
+        // Ahora, dependiendo del número de asientos, cargamos el panel correspondiente
+        cargarModeloAvion(totalAsientos, codigoVuelo);
+        } else {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione un vuelo.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    private void cargarModeloAvion(int totalAsientos, String codigoVuelo){
+        
+        JPanel panelAvion = null;
+
+    // Verificar la capacidad de asientos y cargar el modelo correspondiente
+    if (totalAsientos == 20) {
+        panelAvion = new Avion3(codigoVuelo);  // Suponiendo que tienes el panel ModeloAvion20
+    } else if (totalAsientos == 25) {
+        panelAvion = new Avion2(codigoVuelo);  // Suponiendo que tienes el panel ModeloAvion25
+    } else if (totalAsientos == 30) {
+        panelAvion = new Avion1(codigoVuelo);  // Suponiendo que tienes el panel ModeloAvion30
+    } else {
+        JOptionPane.showMessageDialog(this, "No hay un modelo de avión disponible para esta capacidad.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Ahora, si tienes un JFrame principal llamado "BuscarVuelos", cargamos el panel
+    BuscarVuelo buscarVuelosFrame = new BuscarVuelo(totalAsientos, codigoVuelo);  
+    buscarVuelosFrame.setVisible(true);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {},
-            new String [] {
-                "Código de Vuelo", "Origen", "Destino", "Total Asientos", "Ocupación"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 780, 450));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Rockwell", 0, 24)); // NOI18N
@@ -155,13 +187,28 @@ public class MostrarDisponibles extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, 130, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 590, 130, 40));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 204));
         jButton2.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("SELECCIONAR");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 600, 130, 40));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 590, 130, 40));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {},
+            new String [] {
+                "Código de Vuelo", "Origen", "Destino", "Total Asientos", "Ocupación"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 750, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,47 +228,18 @@ public class MostrarDisponibles extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MostrarDisponibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MostrarDisponibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MostrarDisponibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MostrarDisponibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MostrarDisponibles().setVisible(true);
-            }
-        });
-    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        seleccionarVuelo();
+        this.hide();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

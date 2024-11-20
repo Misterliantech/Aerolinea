@@ -328,6 +328,10 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_comprasActionPerformed
 
     private void vuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vuelosActionPerformed
+        
+        GestorAsientos n = new GestorAsientos();
+        n.actualizarAsientosParaTodosLosVuelos();
+        
         Compras a = new Compras();
         a.setSize(860, 670);
         a.setLocation(0, 0);

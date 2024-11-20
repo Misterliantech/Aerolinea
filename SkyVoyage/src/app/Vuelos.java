@@ -1,5 +1,6 @@
 package app;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import javax.swing.*;
@@ -66,15 +67,17 @@ public class Vuelos extends javax.swing.JPanel {
             jTable1.setModel(model);
             
             jTable1.getColumnModel().getColumn(4).setCellRenderer(new TableCellRenderer() {
+                
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                // Si el valor de la celda es una JProgressBar, devolverla
+                
                 if (value instanceof JProgressBar) {
+                    
                     return (JProgressBar) value;
                 }
                 return null; // En caso contrario, devolver null
-            }
-        });
+                }
+            });
             
             Font font = new Font("Roxwell", Font.PLAIN, 18);
             

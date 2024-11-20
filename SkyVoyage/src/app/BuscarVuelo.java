@@ -4,6 +4,8 @@
  */
 package app;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author Quintero Pinto
@@ -13,8 +15,41 @@ public class BuscarVuelo extends javax.swing.JFrame {
     /**
      * Creates new form BuscarVuelo
      */
-    public BuscarVuelo() {
+    public BuscarVuelo(int totalAsientos, String codigoVuelo) {
         initComponents();
+
+        if (totalAsientos == 20){
+            Avion3 a = new Avion3(codigoVuelo);
+            a.requestFocusInWindow();
+            a.setSize(860, 670);
+            a.setLocation(0, 0);
+
+            content.removeAll();
+            content.add(a, BorderLayout.CENTER);
+            content.revalidate();
+            content.repaint();
+        } else if (totalAsientos == 25){
+            Avion2 a = new Avion2(codigoVuelo);
+            a.requestFocusInWindow();
+            a.setSize(860, 670);
+            a.setLocation(0, 0);
+
+            content.removeAll();
+            content.add(a, BorderLayout.CENTER);
+            content.revalidate();
+            content.repaint();
+        } else if (totalAsientos == 30){
+            Avion1 a = new Avion1(codigoVuelo);
+            a.requestFocusInWindow();
+            a.setSize(860, 670);
+            a.setLocation(0, 0);
+
+            content.removeAll();
+            content.add(a, BorderLayout.CENTER);
+            content.revalidate();
+            content.repaint();
+        }
+        
     }
 
     /**
@@ -30,9 +65,8 @@ public class BuscarVuelo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
         entrar = new javax.swing.JButton();
-        entrar2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -61,7 +95,8 @@ public class BuscarVuelo extends javax.swing.JFrame {
         entrar.setBackground(new java.awt.Color(255, 255, 204));
         entrar.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
         entrar.setForeground(new java.awt.Color(0, 0, 0));
-        entrar.setText("RESERVAR");
+        entrar.setText("CANCELAR");
+        entrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 entrarActionPerformed(evt);
@@ -72,23 +107,7 @@ public class BuscarVuelo extends javax.swing.JFrame {
                 entrarKeyPressed(evt);
             }
         });
-        jPanel2.add(entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 580, -1, 60));
-
-        entrar2.setBackground(new java.awt.Color(255, 255, 204));
-        entrar2.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        entrar2.setForeground(new java.awt.Color(0, 0, 0));
-        entrar2.setText("RESERVAR");
-        entrar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                entrar2ActionPerformed(evt);
-            }
-        });
-        entrar2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                entrar2KeyPressed(evt);
-            }
-        });
-        jPanel2.add(entrar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 460, -1, 60));
+        jPanel2.add(entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 580, 150, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,60 +124,19 @@ public class BuscarVuelo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarActionPerformed
-
+        
+        this.dispose();
     }//GEN-LAST:event_entrarActionPerformed
 
     private void entrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_entrarKeyPressed
         entrar.doClick();        // TODO add your handling code here:
     }//GEN-LAST:event_entrarKeyPressed
 
-    private void entrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_entrar2ActionPerformed
-
-    private void entrar2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_entrar2KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_entrar2KeyPressed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarVuelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarVuelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarVuelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarVuelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BuscarVuelo().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel content;
     private javax.swing.JButton entrar;
-    private javax.swing.JButton entrar2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
