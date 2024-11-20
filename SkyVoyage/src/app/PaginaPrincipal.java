@@ -48,7 +48,6 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         compras = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         vuelos = new javax.swing.JButton();
-        cancelar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
         usuario = new javax.swing.JLabel();
@@ -154,29 +153,6 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        cancelar.setBackground(new java.awt.Color(255, 255, 204));
-        cancelar.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
-        cancelar.setForeground(new java.awt.Color(0, 0, 0));
-        cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eliminar.png"))); // NOI18N
-        cancelar.setText("CANCELAR");
-        cancelar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        cancelar.setBorderPainted(false);
-        cancelar.setContentAreaFilled(false);
-        cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cancelar.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        cancelar.setFocusPainted(false);
-        cancelar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        cancelar.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        cancelar.setOpaque(true);
-        cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cancelarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cancelarMouseExited(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -184,11 +160,14 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(logo)
-                .addContainerGap(17, Short.MAX_VALUE))
-            .addComponent(modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(compras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(vuelos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(modificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(compras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,13 +176,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addComponent(logo)
                 .addGap(142, 142, 142)
                 .addComponent(vuelos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(95, 95, 95)
                 .addComponent(compras, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(91, 91, 91)
                 .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 770));
@@ -284,14 +261,6 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         cerrar.setBackground(new Color (54,154,185));
     }//GEN-LAST:event_cerrarMouseEntered
 
-    private void cancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseExited
-        cancelar.setBackground(new Color (255,255,204));
-    }//GEN-LAST:event_cancelarMouseExited
-
-    private void cancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseEntered
-        cancelar.setBackground(new Color (54,154,185));
-    }//GEN-LAST:event_cancelarMouseEntered
-
     private void vuelosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vuelosMouseExited
         vuelos.setBackground(new Color (255,255,204));
     }//GEN-LAST:event_vuelosMouseExited
@@ -366,7 +335,6 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelar;
     private javax.swing.JButton cerrar;
     private javax.swing.JButton compras;
     private javax.swing.JPanel content;

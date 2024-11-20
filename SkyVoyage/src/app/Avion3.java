@@ -183,7 +183,11 @@ public class Avion3 extends javax.swing.JPanel {
         int filasAfectadas = stmt.executeUpdate();
         if (filasAfectadas > 0) {
             JOptionPane.showMessageDialog(null, "Asiento " + asiento + " reservado con éxito.");
-            // Aquí podrías actualizar los asientos en la interfaz si es necesario
+            BuscarVuelo p = new BuscarVuelo(0, codigoVuelo);
+            
+            p.setVisible(true);
+            
+            this.hide();
         } else {
             JOptionPane.showMessageDialog(null, "Error al reservar el asiento.");
         }
