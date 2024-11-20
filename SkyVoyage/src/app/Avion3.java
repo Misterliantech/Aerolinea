@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -576,7 +577,29 @@ public class Avion3 extends javax.swing.JPanel {
     }//GEN-LAST:event_C6ActionPerformed
 
     private void click(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_click
-                // TODO add your handling code here:
+        JButton boton = (JButton) evt.getSource();
+        
+        String asiento = boton.getText();
+        
+        int confirm = JOptionPane.showConfirmDialog(null, 
+                "¿Deseas reservar el asiento " + asiento + "?",
+                "Confirmar Reserva",
+                JOptionPane.YES_NO_OPTION);
+        
+        if (isAsientoOcupado(asiento)) {
+            
+            JOptionPane.showMessageDialog(null, "El asiento " + asiento + " ya está ocupado. No puedes reservarlo.");
+            return;
+        }
+        
+        if (confirm == JOptionPane.YES_OPTION){
+            
+            reservarAsiento(codigoVuelo, asiento);
+            
+            GestorAsientos n = new GestorAsientos();
+            
+            n.actualizarAsientosParaTodosLosVuelos();
+        } 
     }//GEN-LAST:event_click
 
 
